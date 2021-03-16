@@ -1,0 +1,18 @@
+form {
+  width: 80vw;
+  margin: 0 auto;
+}
+input,
+button {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.25em;
+  padding: 0.5em;
+  margin-top: 1em;
+}
+
+input {
+  width: 80%;
+}
+button:hover {
+  cursor: pointer;
+}
