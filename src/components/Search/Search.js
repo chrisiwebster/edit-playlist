@@ -1,7 +1,7 @@
 import React from "react";
 import "./Search.css";
 
-const id = "54d03dd971f04b3e971ec3ffa241645c";
+const id = process.env.SPOTIFY_KEY;
 const redirect = "http://localhost:3000/";
 const auth = () => {
   const response = fetch(
