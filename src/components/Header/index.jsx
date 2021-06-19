@@ -3,10 +3,10 @@ import "./Header.css";
 
 //use this colour wheel https://color.adobe.com/create/color-wheel
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
     <header>
-      <h1>Playlist Maker</h1>
+      <h1>{title}</h1>
     </header>
   );
 };
