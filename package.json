@@ -2,7 +2,7 @@
   "name": "edit-playlist",
   "version": "1.0.0",
   "description": "Using Spotify API to create an editable playlist.",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
