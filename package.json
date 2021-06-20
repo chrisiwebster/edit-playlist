@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/chrisiwebster/edit-playlist/issues"
   },
-  "homepage": "https://github.com/chrisiwebster/edit-playlist",
+  "homepage": "https://chrisiwebster.github.io/edit-playlist/",
   "dependencies": {
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
