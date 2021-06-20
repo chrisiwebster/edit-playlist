@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  entry: "./src/index.html",
+  entry: "./public/index.html",
   mode: "development",
   module: {
     rules: [
@@ -16,6 +16,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
       },
     ],
   },
