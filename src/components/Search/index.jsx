@@ -1,40 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 
 //Components
 import Button from "../Button";
 import Input from "../Input";
 
 //CSS
-import "./Search.css";
+import "./styles.css";
 
 const Search = ({
-  setSearchTerm,
-  search,
+  handleAPISearch,
   accessToken,
   expiresIn,
   id,
+  searchInput,
+  handleSearchInput,
   redirect,
+  handleClearSearchInput,
 }) => {
   return (
-    <div>
+    <div className="search-buttons">
       {!accessToken && (
         <a
           href={`https://accounts.spotify.com/authorize?client_id=${id}&response_type=token&redirect_uri=${redirect}`}
         >
-          <Button name="Sign in" />
+          <Button type="button" name="Sign in" id="sign" />
         </a>
       )}
       {expiresIn !== 0 && (
-        <Input
-          type="text"
-          id="search"
-          placeholder="Search for songs"
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-        >
-          <Button type="submit" name="Search" onClick={() => search()} />
-        </Input>
+        <form onSubmit={(e) => handleAPISearch(e)}>
+          <Input
+            type="text"
+            value={searchInput}
+            id="search"
+            placeholder="Search for songs"
+            onChange={(e) => handleSearchInput(e)}
+            onBlur={() => handleClearSearchInput()}
+          />
+          <Button type="submit" name="Search" />
+        </form>
       )}
     </div>
   );

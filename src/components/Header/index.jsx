@@ -1,13 +1,14 @@
 import React from "react";
-import "./Header.css";
+import "./styles.css";
 
-//use this colour wheel https://color.adobe.com/create/color-wheel
-
-const Header = ({ title }) => {
+const Header = ({ title, children }) => {
   return (
-    <header>
-      <h1>{title}</h1>
-    </header>
+    <div>
+      {children}
+      <header>
+        <h1>{title}</h1>
+      </header>
+    </div>
   );
 };
 
