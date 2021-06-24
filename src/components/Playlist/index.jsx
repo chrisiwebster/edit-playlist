@@ -1,6 +1,6 @@
 import React from "react";
 
-const Playlist = () => {
+const Playlist = ({ savePlaylist }) => {
   return <h1>Will be playlist</h1>;
 };
 

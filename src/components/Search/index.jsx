@@ -11,20 +11,20 @@ const Search = ({
   handleAPISearch,
   accessToken,
   expiresIn,
-  id,
+  handleSignIn,
   searchInput,
   handleSearchInput,
-  redirect,
   handleClearSearchInput,
 }) => {
   return (
     <div className="search-buttons">
       {!accessToken && (
-        <a
-          href={`https://accounts.spotify.com/authorize?client_id=${id}&response_type=token&redirect_uri=${redirect}`}
-        >
-          <Button type="button" name="Sign in" id="sign" />
-        </a>
+        <Button
+          type="button"
+          name="Sign in"
+          id="sign"
+          onClick={() => handleSignIn()}
+        />
       )}
       {expiresIn !== 0 && (
         <form onSubmit={(e) => handleAPISearch(e)}>

@@ -6,7 +6,7 @@ import Search from "../Search";
 
 //Variables
 const id = process.env.REACT_APP_SPOTIFY_KEY;
-const redirect = window.location.href;
+const redirect = "http://localhost:3000/#/search";
 let accessToken;
 let expiresIn = 0;
 
@@ -17,6 +17,8 @@ const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 if (accessTokenMatch && expiresInMatch) {
   accessToken = accessTokenMatch[1];
   expiresIn = Number(expiresInMatch[1]);
+  //redirects to the search page (wasn't loading)
+  window.location.href = "http://localhost:3000/#/search";
   //every second, removes a value from token, if expiresIn is 0, there is no accessToken.
   setInterval(() => {
     expiresIn--;
@@ -32,6 +34,10 @@ const SearchWrapper = () => {
   const [searchTerm, setSearchTerm] = useState();
   const [searchTracks, setSearchTracks] = useState([]);
   const [searchInput, setSearchInput] = useState();
+
+  const handleSignIn = () => {
+    window.location = `https://accounts.spotify.com/authorize?client_id=${id}&response_type=token&redirect_uri=${redirect}`;
+  };
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
@@ -77,11 +83,10 @@ const SearchWrapper = () => {
         handleAPISearch={handleAPISearch}
         accessToken={accessToken}
         expiresIn={expiresIn}
-        redirect={redirect}
-        id={id}
         handleSearchInput={handleSearchInput}
         handleClearSearchInput={handleClearSearchInput}
         searchInput={searchInput}
+        handleSignIn={handleSignIn}
       />
       <SearchResults searchTracks={searchTracks} expiresIn={expiresIn} />
     </div>
