@@ -1,7 +1,11 @@
 import React from "react";
 
-const Playlist = ({ savePlaylist }) => {
-  return <h1>Will be playlist</h1>;
+const Playlist = () => {
+  return (
+    <div className="playlist">
+      <input defaultValue={"New Playlist"} />
+    </div>
+  );
 };
 
 export default Playlist;

@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 
+//CSS
+import "./styles.css";
+
 //Components
 import SearchResults from "../SearchResults";
 import Search from "../Search";
+import Playlist from "../Playlist";
 
 //Variables
 const id = process.env.REACT_APP_SPOTIFY_KEY;
-const redirect = "http://localhost:3000/#/search";
+const redirect = `${window.location.href}#/search`;
 let accessToken;
 let expiresIn = 0;
 
@@ -18,7 +22,8 @@ if (accessTokenMatch && expiresInMatch) {
   accessToken = accessTokenMatch[1];
   expiresIn = Number(expiresInMatch[1]);
   //redirects to the search page (wasn't loading)
-  window.location.href = "http://localhost:3000/#/search";
+  // window.location.href =
+  //   "https://chrisiwebster.github.com/edit-playlist/#/search";
   //every second, removes a value from token, if expiresIn is 0, there is no accessToken.
   setInterval(() => {
     expiresIn--;
@@ -34,6 +39,7 @@ const SearchWrapper = () => {
   const [searchTerm, setSearchTerm] = useState();
   const [searchTracks, setSearchTracks] = useState([]);
   const [searchInput, setSearchInput] = useState();
+  const [playlist, setPlaylist] = useState([]);
 
   const handleSignIn = () => {
     window.location = `https://accounts.spotify.com/authorize?client_id=${id}&response_type=token&redirect_uri=${redirect}`;
@@ -77,8 +83,44 @@ const SearchWrapper = () => {
       });
   };
 
+  const savePlaylist = (name, trackUris) => {
+    if (!name || !trackUris.length) {
+      return;
+    }
+
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    let userId;
+    return fetch("https://api.spotify.com/v1/me", {
+      headers: headers,
+    })
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        userId = jsonResponse.id;
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+          headers: headers,
+          method: "POST",
+          body: JSON.stringify({ name: name }),
+        })
+          .then((response) => response.json())
+          .then((jsonResponse) => {
+            const playlistId = jsonResponse.id;
+            return fetch(
+              `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
+              {
+                headers: headers,
+                method: "POST",
+                body: JSON.stringify({ uris: trackUris }),
+              }
+            );
+          })
+          .then((jsonResponse) => {
+            setPlaylist(jsonResponse);
+          });
+      });
+  };
+
   return (
-    <div>
+    <div className="search-wrapper">
       <Search
         handleAPISearch={handleAPISearch}
         accessToken={accessToken}
@@ -88,7 +130,13 @@ const SearchWrapper = () => {
         searchInput={searchInput}
         handleSignIn={handleSignIn}
       />
-      <SearchResults searchTracks={searchTracks} expiresIn={expiresIn} />
+      <SearchResults
+        searchTracks={searchTracks}
+        expiresIn={expiresIn}
+        savePlaylist={savePlaylist}
+        playlist={playlist}
+      />
+      <Playlist />
     </div>
   );
 };

@@ -27,7 +27,6 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/search" component={SearchWrapper} />
-          <Route exact path="/playlist" component={Playlist} />
         </Switch>
       </HashRouter>
     </div>

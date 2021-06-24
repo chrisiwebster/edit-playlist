@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src",
@@ -35,5 +36,11 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new Dotenv()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new Dotenv(),
+    new HtmlWebpackPlugin({
+      template: "/public/index.html",
+    }),
+  ],
 };

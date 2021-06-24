@@ -27,11 +27,6 @@ const NavBar = ({ handleNavClick, status }) => {
                 Search songs
               </Link>
             </li>
-            <li onClick={() => handleNavClick()}>
-              <Link to="/playlist" className="nav-item">
-                Playlists
-              </Link>
-            </li>
           </ul>
         </HashRouter>
       </nav>
