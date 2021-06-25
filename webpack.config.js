@@ -40,7 +40,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new Dotenv(),
     new HtmlWebpackPlugin({
-      template: "/public/index.html",
+      template: "./public/index.html",
     }),
   ],
 };
