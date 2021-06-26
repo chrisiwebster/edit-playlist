@@ -27,7 +27,7 @@ const Search = ({
         />
       )}
       {expiresIn !== 0 && (
-        <form onSubmit={(e) => handleAPISearch(e)}>
+        <form id="search" onSubmit={(e) => handleAPISearch(e)}>
           <Input
             type="text"
             value={searchInput}

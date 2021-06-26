@@ -30,7 +30,8 @@ nav {
 }
 
 .nav-item {
-  width: 100%;
+  position: relative;
+
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   text-decoration: none;
@@ -59,7 +60,7 @@ a.nav-item:hover {
 
 .fa-hamburger,
 .fa-times {
-  padding: 5px;
+  padding: 0.15em;
   font-size: 3em;
   z-index: 1;
 }

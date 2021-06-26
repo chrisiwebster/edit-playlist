@@ -6,7 +6,6 @@ import Header from "../Header";
 import NavBar from "../NavBar";
 import Home from "../Home";
 import SearchWrapper from "../SearchWrapper";
-import Playlist from "../Playlist";
 
 import "./App.css";
 

@@ -3,12 +3,10 @@ import "./styles.css";
 
 const Header = ({ title, children }) => {
   return (
-    <div>
+    <header>
       {children}
-      <header>
-        <h1>{title}</h1>
-      </header>
-    </div>
+      <h1>{title}</h1>
+    </header>
   );
 };
 

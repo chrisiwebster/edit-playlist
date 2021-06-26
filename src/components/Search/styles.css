@@ -8,7 +8,7 @@ button#sign {
   width: 80vw;
 }
 
-form {
+form#search {
   max-width: 90vw;
   display: flex;
   justify-content: center;
